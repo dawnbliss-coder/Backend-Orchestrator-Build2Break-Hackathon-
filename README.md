@@ -1,145 +1,48 @@
-# HR Workflow Orchestrator
+# AI-Powered HR Management Portal
 
-A unified API system that automates HR workflows including resume screening, onboarding plan generation, and policy Q&A using AI agents.
+This is a full-stack enterprise application designed to automate HR workflows. The system integrates Large Language Models (LLMs) to handle document intelligence for company policies, candidate skill assessment, and automated onboarding roadmap generation.
 
-## Features
-- **Resume Screening**: Extracts and scores candidate information from PDFs
-- **Onboarding Plan Generation**: Creates personalized onboarding schedules
-- **Policy Q&A**: Answers candidate policy questions using RAG
+## Core Modules
 
-## Setup Instructions
+1. **Knowledge Base (RAG):** Implements Retrieval-Augmented Generation to allow HR professionals to query internal PDF documents. It features automated text extraction, summarization, and vector-based search.
+2. **Skill Scoring Engine:** Analyzes candidate resumes against job descriptions to provide a match percentage, identifies skill gaps, and extracts key highlights.
+3. **Talent Pool Management:** A persistent database of analyzed candidates with search, filter, and delete capabilities.
+4. **Onboarding Module:** Utilizes identified skill gaps to generate structured 30-day training roadmaps for new hires.
 
-### Prerequisites
-- Python 3.8+
-- MongoDB Atlas account (free tier available)
-- Google Gemini API key
+## Technical Stack
 
-### Installation
+* **Framework:** Next.js 15 (App Router)
+* **AI Engine:** Google Gemini 2.0 Flash
+* **Database:** MongoDB Atlas
+* **PDF Processing:** pdf2json
+* **Styling:** Tailwind CSS
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd hr_management
-```
+## Environment Variables
 
-## Project Origin
+The following variables must be defined in a .env.local file:
 
-This project was originally developed during [Hackathon Name] in collaboration 
-with [teammate names]. This repository represents my continued development and 
-improvements to the original concept.
+* MONGODB_URI: Your MongoDB Atlas connection string.
+* GEMINI_API_KEY: Your Google AI Studio API key.
 
-**Original Team Members:**
-- Mahek Desai - [flakes22](https://github.com/flakes22)
-- Aishani Sood - [aishani-sood21](https://github.com/aishani-sood21)
-- Shrawani Nanda - [shraw06](https://github.com/shraw06)
+## Installation and Execution
 
-**My Contributions:**
-- implemented Policy Q&A ai chatbot → Answer candidate's policy questions
+### 1. Clone the Project
+Navigate to your project directory.
 
-##  Overview
+### 2. Install Dependencies
+Run the following command to ensure all required Node modules are installed:
+npm install
 
-This orchestrator provides a **unified API endpoint** that processes candidates through a complete HR workflow in one sequential operation:
+### 3. Run in Development Mode
+To start the application locally:
+npm run dev
 
-1. **Resume Screening** → Extract and score candidate information
-2. **Onboarding Plan Generation** → Create personalized onboarding schedule
-3. **Policy Q&A** → Answer candidate's policy questions
+### 4. Access the Dashboard
+Open your browser and navigate to http://localhost:3000.
 
-All three agents work together seamlessly through a single API call.
+## Key Dependencies Installed
 
----
-
-##  Architecture
-
-```
-┌─────────────────────────────────────────────────┐
-│           Orchestrator API (Port 9000)          │
-│              /orchestrate endpoint               │
-└─────────────────────────────────────────────────┘
-                        │
-        ┌───────────────┼───────────────┐
-        ▼               ▼               ▼
-┌─────────────┐ ┌─────────────┐ ┌─────────────┐
-│   Resume    │ │ Onboarding  │ │  Policy Q&A │
-│   Screening │ │    Agent    │ │    Agent    │
-│    Agent    │ │             │ │             │
-└─────────────┘ └─────────────┘ └─────────────┘
-```
-
----
-
-##  Project Structure
-
-```
-BUILD2BREAK25-ORION/
-├── .github/
-├── hr_management/
-│   ├── policy_service/
-│   ├── read_pdfs/
-│   └── src/
-│       └── hr_management/
-│           ├── __pycache__/
-│           ├── .env
-│           ├── crew.py
-│           ├── main.py
-│           ├── onboarding_agent.py
-│           ├── orchestrator.py              ← Port 9000 (Sequential API)
-│           ├── policy_agent.py
-│           ├── policy_documents.json
-│           ├── policy_qa.py
-│           ├── resume_agent.py
-│           └── .env
-└── README.md
-```
-
----
-
-##  Prerequisites
-
-### Required Software
-- Python 3.8+
-- MongoDB Atlas account (for candidate storage)
-- Gemini API keys
-
-### Required Python Packages
-
-Create `requirements.txt`:
-
-```txt
-fastapi==0.104.1
-uvicorn==0.24.0
-pydantic==2.5.0
-pymongo==4.6.0
-requests==2.31.0
-crewai==0.1.0
-google-generativeai==0.3.1
-pdfplumber==0.10.3
-pytesseract==0.3.10
-Pillow==10.1.0
-```
-
-
-Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-##  Configuration
-
-### 1. API Keys Setup
-
-Update the following files with your Gemini API keys:
-
-**`resume_agent.py`:**
-```python
-GEMINI_API_KEY = "YOUR_RESUME_API_KEY"
-```
-
-**`onboarding_agent.py`:**
-```python
-GEMINI_API_KEY = "YOUR_ONBOARDING_API_KEY"
-```
-
-**
+* @google/generative-ai: Interface for Gemini API.
+* mongodb: Database driver for candidate and policy storage.
+* pdf2json: Technical parser for PDF text extraction.
+* lucide-react: Component library for dashboard icons.
