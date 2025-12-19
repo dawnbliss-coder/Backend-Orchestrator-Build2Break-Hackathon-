@@ -40,6 +40,14 @@ npm run dev
 ### 4. Access the Dashboard
 Open your browser and navigate to http://localhost:3000.
 
+## Technical Note
+This project utilizes the latest Tailwind CSS v4 engine. If you encounter CSS resolution issues, ensure `@tailwindcss/postcss` is installed and the `.next` cache is cleared.
+
+For that run:
+* npm install tailwindcss@next @tailwindcss/postcss postcss
+* rm -rf .next
+* then run npm run dev
+
 ## Key Dependencies Installed
 
 * @google/generative-ai: Interface for Gemini API.
