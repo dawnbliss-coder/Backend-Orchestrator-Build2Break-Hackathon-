@@ -12,7 +12,7 @@ This is a full-stack enterprise application designed to automate HR workflows. T
 ## Technical Stack
 
 * **Framework:** Next.js 15 (App Router)
-* **AI Engine:** Google Gemini 2.0 Flash
+* **AI Engine:** Google Gemini 2.5 Flash
 * **Database:** MongoDB Atlas
 * **PDF Processing:** pdf2json
 * **Styling:** Tailwind CSS
